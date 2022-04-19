@@ -1,0 +1,37 @@
+POST http://localhost:3000/set HTTP/1.1
+Content-Type: application/json
+
+{
+    "Title":"Test",
+    "Author":"mcqueenthebest",
+    "Words":[
+        {
+            "value":"Water"
+        },
+        {
+            "value":"Cola"
+        },
+        {
+            "value":"Ice Tea"
+        },
+        {
+            "value":"Sprite"
+        },
+        {
+            "value":"Cola-Zero"
+        },
+        {
+            "value":"Nestea"
+        },
+        {
+            "value":"Tonisteiner"
+        }
+    ]
+}
+
+###
+
+GET http://localhost:3000/set HTTP/1.1
+Content-Type: application/json
+
+###
