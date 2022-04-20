@@ -29,4 +29,4 @@ app.MapGet("/folder/{folderid}",async (ISpellItService SpellItService,string fol
 app.MapGet("/set/{setid}",async (ISpellItService SpellItService,string setid)=> await SpellItService.GetSetById(setid));
 app.MapGet("/word/{wordid}",async (ISpellItService SpellItService,string wordid)=> await SpellItService.GetWordById(wordid));
 
-app.Run("https://localhost:3000");
+app.Run("http://localhost:3000");
