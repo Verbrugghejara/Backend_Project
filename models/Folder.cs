@@ -9,6 +9,12 @@ public class Folder
     public string? Author { get; set; }
     public Set? Set { get; set; }
     public int Amount { get{
+        if (Set.Title == null){
+            return 0;
+        }else{
         return Set.Title.Length;
+
+        }
+        
     }}
 }
