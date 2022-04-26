@@ -114,3 +114,8 @@ D:\2MCT\Backend\Backend_Project\obj\Debug\net6.0\refint\Backend_Project.dll
 D:\2MCT\Backend\Backend_Project\obj\Debug\net6.0\Backend_Project.pdb
 D:\2MCT\Backend\Backend_Project\obj\Debug\net6.0\Backend_Project.genruntimeconfig.cache
 D:\2MCT\Backend\Backend_Project\obj\Debug\net6.0\ref\Backend_Project.dll
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\2MCT\Backend\Backend_Project\obj\Debug\net6.0\Backend_Project.MvcApplicationPartsAssemblyInfo.cs

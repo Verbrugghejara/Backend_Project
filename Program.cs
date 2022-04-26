@@ -1,4 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 var mongoSettings = builder.Configuration.GetSection("MongoConnection");
 builder.Services.Configure<DatabaseSettings>(mongoSettings);
 builder.Services.AddTransient<IMongoContext, MongoContext>();
@@ -7,6 +9,8 @@ builder.Services.AddTransient<IFolderRepository, FolderRepository>();
 builder.Services.AddTransient<IWordRepository, WordRepository>();
 builder.Services.AddTransient<ISpellItService, SpellItService>();
 var app = builder.Build();
+app.MapSwagger();
+app.UseSwaggerUI();
 
 app.MapGet("/", () => "Hello World!");
 
