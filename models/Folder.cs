@@ -8,7 +8,7 @@ public class Folder
     public string? Title { get; set; }
     public string? Author { get; set; }
     public Set? Set { get; set; }
-    public int Amount { get{
+    public int CountOfSets { get{
         if (Set.Title == null){
             return 0;
         }else{

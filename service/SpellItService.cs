@@ -10,6 +10,7 @@ public interface ISpellItService
     Task<Folder> GetFolderById(string id);
     Task<Set> GetSetById(string id);
     Task<Word> GetWordById(string id);
+    Task UpdateFolder(string id, Set set);
 }
 
 public class SpellItService : ISpellItService
@@ -60,5 +61,9 @@ public class SpellItService : ISpellItService
     public async Task<Word> GetWordById(string id)
     {
         return await _wordRepository.GetWordById(id);
+    }
+    public async Task UpdateFolder(string id, Set set)
+    {
+        await _folderRepository.UpdateFolder(id, set);
     }
 }

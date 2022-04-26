@@ -9,7 +9,7 @@ public class Set
     public string? Author { get; set; }
     public string? Language { get; set; }
     public List<Word>? Words { get; set; }
-    public int? Amount { get{
+    public int? CountOfWords { get{
         if (Id == null){
             return null;
         }else{

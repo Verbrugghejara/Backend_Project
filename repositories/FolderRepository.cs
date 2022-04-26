@@ -1,17 +1,11 @@
 namespace SpellIt.Repositories;
 
-public interface IFolderRepository1
-{
-    Task<Folder> AddFolder(Folder newFolder);
-    Task<List<Folder>> GetAllFolders();
-    Task<Folder> GetFolderById(string id);
-}
-
 public interface IFolderRepository
 {
     Task<Folder> AddFolder(Folder newFolder);
     Task<List<Folder>> GetAllFolders();
     Task<Folder> GetFolderById(string id);
+    Task UpdateFolder(string id, Set set);
 }
 
 public class FolderRepository : IFolderRepository
@@ -36,6 +30,13 @@ public class FolderRepository : IFolderRepository
     public async Task<Folder> GetFolderById(string id)
     {
         return await _context.FoldersCollection.Find<Folder>(id).FirstOrDefaultAsync();
+    }
+    public async Task UpdateFolder(string id, Set set)
+    {
+        FilterDefinition<Folder> filter = Builders<Folder>.Filter.Eq("Id", id);
+        UpdateDefinition<Folder> update = Builders<Folder>.Update.AddToSet<Set>("set", set);
+        await _context.FoldersCollection.UpdateOneAsync(filter, update);
+        return;
     }
 
 }
