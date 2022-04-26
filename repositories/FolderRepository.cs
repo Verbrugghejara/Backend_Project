@@ -3,9 +3,10 @@ namespace SpellIt.Repositories;
 public interface IFolderRepository
 {
     Task<Folder> AddFolder(Folder newFolder);
+    Task DeleteFolder(string id);
     Task<List<Folder>> GetAllFolders();
     Task<Folder> GetFolderById(string id);
-    Task UpdateFolder(string id, Set set);
+    Task<Folder> UpdateFolder(Folder folder);
 }
 
 public class FolderRepository : IFolderRepository
@@ -31,12 +32,18 @@ public class FolderRepository : IFolderRepository
     {
         return await _context.FoldersCollection.Find<Folder>(id).FirstOrDefaultAsync();
     }
-    public async Task UpdateFolder(string id, Set set)
+    public async Task<Folder> UpdateFolder(Folder folder)
     {
-        FilterDefinition<Folder> filter = Builders<Folder>.Filter.Eq("Id", id);
-        UpdateDefinition<Folder> update = Builders<Folder>.Update.AddToSet<Set>("set", set);
-        await _context.FoldersCollection.UpdateOneAsync(filter, update);
-        return;
+        var filter = Builders<Folder>.Filter.Eq("Id", folder.Id);
+        var update = Builders<Folder>.Update.Set("Sets", folder.Sets);
+        var result = await _context.FoldersCollection.UpdateOneAsync(filter, update);
+        return await GetFolderById(folder.Id);
+    }
+
+    public async Task DeleteFolder(string id)
+    {
+        var filter = Builders<Folder>.Filter.Eq("Id", id);
+        var result = await _context.FoldersCollection.DeleteOneAsync(filter);
     }
 
 }
