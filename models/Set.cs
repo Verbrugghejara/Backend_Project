@@ -8,12 +8,12 @@ public class Set
     public string? Title { get; set; }
     public string? Author { get; set; }
     public string? Language { get; set; }
-    public List<Word>? Words { get; set; }
+    public Word? Words { get; set; }
     public int? CountOfWords { get{
         if (Id == null){
             return null;
         }else{
-        return Words.Count;
+        return Words.Id.Length;
         }
     }}
 }

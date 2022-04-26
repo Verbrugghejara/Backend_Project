@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vr2oN2UXQkfosKaH6CNv6JBm7keYjncNEI8ODNn7wzC9kU/woMhPcjN5DMHPFj5McUCji5Hbo+1cU7l6Vgs3OQ==",
+  "dgSpecHash": "WzGZDcK5R1+Yi/fnEx6dPr2eirzvarSbfZkigw8QwBEkwaUNygVJP8kYEBGLrXgemmg8tOmMGTpuhBhtW5JcrQ==",
   "success": true,
-  "projectFilePath": "D:\\2MCT\\Backend\\Backend_Project\\Backend_Project.csproj",
+  "projectFilePath": "D:\\_mct\\MTS 4\\Backend_Development\\Backend_Project\\Backend_Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jarav\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
     "C:\\Users\\jarav\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
