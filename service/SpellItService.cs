@@ -17,6 +17,7 @@ public interface ISpellItService
     Task UpdateFolder(Folder folder);
     Task UpdateSet(Set set);
     Task UpdateWord(Word word);
+    Task UpdateWordInSet(Set set);
 }
 
 public class SpellItService : ISpellItService
@@ -84,6 +85,10 @@ public class SpellItService : ISpellItService
     public async Task UpdateSet(Set set)
     {
         await _setRepository.UpdateSet(set);
+    }
+    public async Task UpdateWordInSet(Set set)
+    {
+        await _setRepository.UpdateWordInSet(set);
     }
 
     public async Task DeleteSet(string id)

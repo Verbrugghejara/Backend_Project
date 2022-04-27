@@ -95,6 +95,9 @@ app.MapPost("/set",async (ISpellItService SpellItService, Set set)=>
 app.MapPut("/set", async (ISpellItService spellItService, Set set )=>{
     await spellItService.UpdateSet(set);
 });
+app.MapPut("/set/word",async (ISpellItService spellItService,Set set)=>{
+    await spellItService.UpdateWordInSet(set);
+});
 app.MapDelete("/set/{id}",async (ISpellItService spellItService, string id)=>{
     await spellItService.DeleteSet(id);
 });

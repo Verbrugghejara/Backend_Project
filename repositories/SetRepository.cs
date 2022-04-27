@@ -5,8 +5,9 @@ public interface ISetRepository
     Task<Set> AddSet(Set newSet);
     Task DeleteSet(string id);
     Task<List<Set>> GetAllSet();
-    Task<Set> GetSetById(string id);
+    Task<Set> GetSetById(string Id);
     Task<Set> UpdateSet(Set set);
+    Task<List<Set>> UpdateWordInSet(Set set);
 }
 
 public class SetRepository : ISetRepository
@@ -27,9 +28,16 @@ public class SetRepository : ISetRepository
     {
         return await _context.SetsCollection.Find(_ => true).ToListAsync();
     }
-    public async Task<Set> GetSetById(string id)
+    public async Task<Set> GetSetById(string Id)
     {
-        return await _context.SetsCollection.Find<Set>(id).FirstOrDefaultAsync();
+        return await _context.SetsCollection.Find<Set>(c => c.Id == Id).FirstOrDefaultAsync();
+    }
+    public async Task<List<Set>> UpdateWordInSet(Set set)
+    {
+        var filter = Builders<Set>.Filter.Eq("Id", set.Id);
+        var update = Builders<Set>.Update.AddToSet("Words", set.Words[0]);
+        var result = await _context.SetsCollection.UpdateOneAsync(filter, update);
+        return await GetAllSet();
     }
     public async Task<Set> UpdateSet(Set set)
     {

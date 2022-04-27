@@ -10,41 +10,52 @@ Content-Type: application/json
             "value":"Water",
             "Correct":2,
             "Mistake":0
-        },
-        {
-            "value":"Cola",
-            "Correct":0,
-            "Mistake":2
-        },
-        {
-            "value":"Ice Tea",
-            "Correct":1,
-            "Mistake":1
-        },
-        {
-            "value":"Sprite",
-            "Correct":0,
-            "Mistake":0
-        },
-        {
-            "value":"Cola-Zero",
-            "Correct":0,
-            "Mistake":3
-        },
-        {
-            "value":"Nestea",
-            "Correct":2,
-            "Mistake":0
-        },
-        {
-            "value":"Tonisteiner",
-            "Correct":3,
-            "Mistake":2
         }
     ]
 }
 
 ###
+PUT http://localhost:3000/set HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id":"6260014b6f7dc317124606a0",
+   "Title": "Werk",
+      "Language": "",
+      "Author": "",
+      "Words": [
+        {
+            "Id":"",
+          "value": "",
+          "Correct": 0,
+          "Mistake": 0
+        }
+      ]
+}
+
+###
+
+PUT http://localhost:3000/set/word HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id":"6260014b6f7dc317124606a0",
+   "Title": "werk",
+      "Language": "",
+      "Author": "",
+      "Words": [
+        {
+            "Id":"D5F42444C2CD2704B3AE1317",
+          "value": "wooord",
+          "Correct": 0,
+          "Mistake": 0
+        }
+      ]
+}
+
+
+###
+
 
 GET http://localhost:3000/set HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZ2l2ZW5fbmFtZSI6IlZlcmJydWdnaGUgSmFyYSIsImNpdHkiOiJUaWVsdCIsIm5iZiI6MTY1MDk5OTg0MiwiZXhwIjoxNjUyNzk5ODQyLCJpc3MiOiJodHRwczovLzAuMC4wLjA6MzAwMCIsImF1ZCI6InNwZWxsaXRfYXBpX3VzZXJzIn0.4AyUTcEQ4VI9wERgdQ4YUjWera5dY-ejSyW-Ipgw4o8
@@ -77,3 +88,8 @@ Content-Type: application/json
     "username":"jarav",
     "password":"secret"
 }
+
+###!
+
+DELETE http://localhost:3000/word/7b38c2d7425784bc06131331 HTTP/1.1
+Content-Type: application/json
