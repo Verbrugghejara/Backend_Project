@@ -1,5 +1,5 @@
 namespace SpellIt.Models;
-
+ [BsonIgnoreExtraElements]
 public class Folder 
 {
     [BsonId]
@@ -7,12 +7,12 @@ public class Folder
     public string? Id {get; set;}
     public string? Title { get; set; }
     public string? Author { get; set; }
-    public Set[]? Set { get; set; }
+    public Set[]? Sets { get; set; }
     public int CountOfSets { get{
-        if (Set.Length == null){
+        if (Sets?.Length == null){
             return 0;
         }else{
-        return Set.Length;
+        return Sets.Length;
 
         }
         

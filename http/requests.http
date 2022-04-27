@@ -47,7 +47,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/set HTTP/1.1
-Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZ2l2ZW5fbmFtZSI6IlZlcmJydWdnaGUgSmFyYSIsImNpdHkiOiJUaWVsdCIsIm5iZiI6MTY1MDk5OTg0MiwiZXhwIjoxNjUyNzk5ODQyLCJpc3MiOiJodHRwczovLzAuMC4wLjA6MzAwMCIsImF1ZCI6InNwZWxsaXRfYXBpX3VzZXJzIn0.4AyUTcEQ4VI9wERgdQ4YUjWera5dY-ejSyW-Ipgw4o8
 
 ###
 
@@ -65,4 +65,14 @@ Content-Type: application/json
     "set":[]
     
     
+}
+
+###
+
+POST http://localhost:3000/authentication HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"jarav",
+    "password":"secret"
 }

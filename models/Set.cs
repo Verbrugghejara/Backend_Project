@@ -9,17 +9,17 @@ public class Set
     public string? Author { get; set; }
     public string? Language { get; set; }
     public Word[]? Words { get; set; }
-    public int? CountOfWords
+    public int CountOfWords
     {
         get
         {
-            if (Id == null)
+            if (Words?.Length == null)
             {
-                return null;
+                return 0;
             }
             else
             {
-                return Words?.Length;
+                return Words.Count();
             }
         }
     }
