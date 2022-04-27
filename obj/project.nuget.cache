@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mBggxH/9QEUlCWR6gx+BVxmIAH2+2cQHtzDbBqsR5pwZUl/ROsqtspZTlRT9GcfSmlTgO1woGM+V76vaf9rEFw==",
+  "dgSpecHash": "jOldWXRmkuWcyzq1/MNmDhCJeEGaR/fC4vpaHlgsI+94XryXH7ABEn/a3rzcTKbOcomOZPYLfYZ2ZsXc/GjCwA==",
   "success": true,
-  "projectFilePath": "D:\\2MCT\\Backend\\Backend_Project\\Backend_Project.csproj",
+  "projectFilePath": "D:\\_mct\\MTS 4\\Backend_Development\\Backend_Project\\Backend_Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jarav\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
     "C:\\Users\\jarav\\.nuget\\packages\\greendonut\\12.8.1\\greendonut.12.8.1.nupkg.sha512",
