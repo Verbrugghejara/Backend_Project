@@ -11,14 +11,15 @@ services:
   #   ports:
   #     - 3000:3000
   
-  # api:
-  #   build:
-  #     context: .
-  #     dockerfile: dockerfile
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - ./appsettings.Docker.json:/backendproject/appsettings.json
+  api:
+    image: backend_project
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./appsettings.Docker.json:/app/appsettings.json
     
   mongo:
     hostname: mongo

@@ -5,7 +5,7 @@ public interface IWordRepository
     Task<Word> AddWord(Word newWord);
     Task DeleteWord(string id);
     Task<List<Word>> GetAllWords();
-    Task<Word> GetWordById(string id);
+    Task<Word> GetWordById(string Id);
     Task<Word> UpdateWord(Word word);
 }
 

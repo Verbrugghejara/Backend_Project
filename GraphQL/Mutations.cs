@@ -72,13 +72,13 @@ public class Mutation
         };
         await spellItService.DeleteFolder(deleteFolder.Id);
     }
-    public async Task DeleteSet([Service] ISpellItService spellItService, DeleteSetInput input)
+    public async Task DeleteWordInSet([Service] ISpellItService spellItService, DeleteSetInput input)
     {
-        var deleteSet = new Set()
+        var deleteSet = new Word()
         {
             Id = input.id
         };
-        await spellItService.DeleteSet(deleteSet.Id);
+        await spellItService.DeleteWordInSet(deleteSet);
     }
     public async Task DeleteWord([Service] ISpellItService spellItService, DeleteWordInput input)
     {

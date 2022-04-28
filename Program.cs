@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 var mongoSettings = builder.Configuration.GetSection("MongoConnection");
 builder.Services.Configure<DatabaseSettings>(mongoSettings);
@@ -19,9 +21,9 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new()
     {
-        ValidateIssuer= true,
+        ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateIssuerSigningKey=true,
+        ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["AuthenticationSettings:Issuer"],
         ValidAudience = builder.Configuration["AuthenticationSettings:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(builder.Configuration["AuthenticationSettings:SecretForKey"]))
@@ -41,16 +43,17 @@ app.MapGraphQL();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapPost("/authentication",(IAuthenticationService authenticationService, IOptions<AuthenticationSettings> authSettings, AuthenticationRequestBody authenticationRequestBody )=>{
-    var user = authenticationService.ValidateUser(authenticationRequestBody.username,authenticationRequestBody.password);
+app.MapPost("/authentication", (IAuthenticationService authenticationService, IOptions<AuthenticationSettings> authSettings, AuthenticationRequestBody authenticationRequestBody) =>
+{
+    var user = authenticationService.ValidateUser(authenticationRequestBody.username, authenticationRequestBody.password);
     if (user == null)
         return Results.Unauthorized();
 
     var securityKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(authSettings.Value.SecretForKey));
-    var signingCredentails = new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
+    var signingCredentails = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
     var claimsForToken = new List<Claim>();
-    claimsForToken.Add(new Claim("sub","1"));
-    claimsForToken.Add(new Claim("given_name",user.name));
+    claimsForToken.Add(new Claim("sub", "1"));
+    claimsForToken.Add(new Claim("given_name", user.name));
     claimsForToken.Add(new Claim("city", user.city));
 
     var jwtSecurityToken = new JwtSecurityToken(
@@ -60,7 +63,7 @@ app.MapPost("/authentication",(IAuthenticationService authenticationService, IOp
         DateTime.UtcNow,
         DateTime.UtcNow.AddHours(500),
         signingCredentails
-        
+
     );
     var tokenToReturn = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
 
@@ -69,50 +72,58 @@ app.MapPost("/authentication",(IAuthenticationService authenticationService, IOp
 
 // app.MapGet("/swagger/index.html", () => "Hello World!");
 // FOLDER
-app.MapGet("/folder",async (ISpellItService SpellItService)=>await SpellItService.GetAllFolders());
-app.MapGet("/folder/{folderid}",async (ISpellItService SpellItService,string folderid)=> await SpellItService.GetFolderById(folderid));
-app.MapPost("/folder",async (ISpellItService SpellItService, Folder folder)=> 
+app.MapGet("/folder", async (ISpellItService SpellItService) => await SpellItService.GetAllFolders());
+app.MapGet("/folder/{folderid}", async (ISpellItService SpellItService, string folderid) => await SpellItService.GetFolderById(folderid));
+app.MapPost("/folder", async (ISpellItService SpellItService, Folder folder) =>
 {
     var result = await SpellItService.AddFolder(folder);
-    return Results.Created("",result);
+    return Results.Created("/folder/"+folder.Id, result);
 });
-app.MapDelete("/folder/{id}",async (ISpellItService spellItService, string id)=>{
+app.MapDelete("/folder/{id}", async (ISpellItService spellItService, string id) =>
+{
     await spellItService.DeleteFolder(id);
 });
-app.MapPut("/folder", async (ISpellItService spellItService, Folder folder )=>{
+app.MapPut("/folder", async (ISpellItService spellItService, Folder folder) =>
+{
     await spellItService.UpdateFolder(folder);
 });
 
 // SET
 
-app.MapGet("/set",async (ISpellItService SpellItService)=>await SpellItService.GetAllSet());
-app.MapGet("/set/{setid}",async (ISpellItService SpellItService,string setid)=> await SpellItService.GetSetById(setid));
-app.MapPost("/set",async (ISpellItService SpellItService, Set set)=> 
+app.MapGet("/set", async (ISpellItService SpellItService) => await SpellItService.GetAllSet());
+app.MapGet("/set/{setid}", async (ISpellItService SpellItService, string setid) => await SpellItService.GetSetById(setid));
+app.MapPost("/set", async (ISpellItService SpellItService, Set set) =>
 {
     var result = await SpellItService.AddSet(set);
-    return Results.Created("",result);
+    return Results.Created("/set/"+set.Id, result);
 });
-app.MapPut("/set", async (ISpellItService spellItService, Set set )=>{
+app.MapPut("/set", async (ISpellItService spellItService, Set set) =>
+{
     await spellItService.UpdateSet(set);
 });
-app.MapPut("/set/word",async (ISpellItService spellItService,Set set)=>{
+app.MapPut("/set/word", async (ISpellItService spellItService, Set set) =>
+{
     await spellItService.UpdateWordInSet(set);
 });
-app.MapDelete("/set/{id}",async (ISpellItService spellItService, string id)=>{
-    await spellItService.DeleteSet(id);
+app.MapDelete("/set/delWord", async (ISpellItService spellItService, [FromBody] Word word) =>
+{
+    await spellItService.DeleteWordInSet(word);
 });
 
 // WORD 
-app.MapGet("/word",async (ISpellItService SpellItService)=>await SpellItService.GetAllWords());
+app.MapGet("/word", async (ISpellItService SpellItService) => await SpellItService.GetAllWords());
 
-app.MapGet("/word/{wordid}",async (ISpellItService SpellItService,string wordid)=> await SpellItService.GetWordById(wordid));
-app.MapDelete("/word/{id}",async (ISpellItService spellItService, string id)=>{
+app.MapGet("/word/{wordid}", async (ISpellItService SpellItService, string wordid) => await SpellItService.GetWordById(wordid));
+app.MapDelete("/word/{word}", async (ISpellItService spellItService, string id) =>
+{
     await spellItService.DeleteWord(id);
 });
-app.MapPut("/word", async (ISpellItService spellItService, Word word )=>{
+app.MapPut("/word", async (ISpellItService spellItService, Word word) =>
+{
     await spellItService.UpdateWord(word);
 });
 
 
 app.Run("http://0.0.0.0:3000");
+// app.Run();
 public partial class Program { }
