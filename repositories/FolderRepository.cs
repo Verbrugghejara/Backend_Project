@@ -28,9 +28,9 @@ public class FolderRepository : IFolderRepository
         return await _context.FoldersCollection.Find(_ => true).ToListAsync();
     }
 
-    public async Task<Folder> GetFolderById(string id)
+    public async Task<Folder> GetFolderById(string Id)
     {
-        return await _context.FoldersCollection.Find<Folder>(id).FirstOrDefaultAsync();
+        return await _context.FoldersCollection.Find<Folder>(c => c.Id == Id).FirstOrDefaultAsync();
     }
     public async Task<Folder> UpdateFolder(Folder folder)
     {

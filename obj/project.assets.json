@@ -2477,11 +2477,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\_mct\\MTS 4\\Backend_Development\\Backend_Project\\Backend_Project.csproj",
+      "projectUniqueName": "D:\\2MCT\\Backend\\Backend_Project\\Backend_Project.csproj",
       "projectName": "Backend_Project",
-      "projectPath": "D:\\_mct\\MTS 4\\Backend_Development\\Backend_Project\\Backend_Project.csproj",
+      "projectPath": "D:\\2MCT\\Backend\\Backend_Project\\Backend_Project.csproj",
       "packagesPath": "C:\\Users\\jarav\\.nuget\\packages\\",
-      "outputPath": "D:\\_mct\\MTS 4\\Backend_Development\\Backend_Project\\obj\\",
+      "outputPath": "D:\\2MCT\\Backend\\Backend_Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -2559,7 +2559,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

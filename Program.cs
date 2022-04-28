@@ -115,3 +115,4 @@ app.MapPut("/word", async (ISpellItService spellItService, Word word )=>{
 
 
 app.Run("http://0.0.0.0:3000");
+public partial class Program { }

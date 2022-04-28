@@ -22,9 +22,9 @@ public class WordRepository : IWordRepository
         return await _context.WordsCollection.Find(_ => true).ToListAsync();
     }
 
-    public async Task<Word> GetWordById(string id)
+    public async Task<Word> GetWordById(string Id)
     {
-        return await _context.WordsCollection.Find<Word>(id).FirstOrDefaultAsync();
+        return await _context.WordsCollection.Find<Word>(c => c.Id == Id).FirstOrDefaultAsync();
     }
     public async Task<Word> AddWord(Word newWord)
     {

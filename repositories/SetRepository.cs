@@ -1,5 +1,6 @@
 namespace SpellIt.Repositories;
 
+
 public interface ISetRepository
 {
     Task<Set> AddSet(Set newSet);

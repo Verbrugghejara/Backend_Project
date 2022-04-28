@@ -14,8 +14,8 @@ global using Microsoft.AspNetCore.Authorization;
 
 //Custumer
 global using SpellIt.Models;
-global using SpellIt.Configuration;
 global using SpellIt.Context;
+global using SpellIt.Configuration;
 global using SpellIt.Repositories;
 global using SpellIt.Service;
 global using SpellIt.Authen.Service;
