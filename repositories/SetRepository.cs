@@ -3,7 +3,7 @@ namespace SpellIt.Repositories;
 public interface ISetRepository
 {
     Task<Set> AddSet(Set newSet);
-    Task DeleteWordInSet(Word word);
+    Task DeleteSet(string id);
     Task<List<Set>> GetAllSet();
     Task<Set> GetSetById(string Id);
     Task<Set> UpdateSet(Set set);
@@ -42,15 +42,21 @@ public class SetRepository : ISetRepository
     public async Task<Set> UpdateSet(Set set)
     {
         var filter = Builders<Set>.Filter.Eq("Id", set.Id);
-        var update = Builders<Set>.Update.Set("Title", set.Title);
+        var update = Builders<Set>.Update.Set("Words", set.Words);
         var result = await _context.SetsCollection.UpdateOneAsync(filter, update);
         return await GetSetById(set.Id);
     }
-
-    public async Task DeleteWordInSet(Word word)
+    public async Task DeleteSet(string id)
     {
-        var filter = Builders<Set>.Filter.Eq("Words", word);
+        var filter = Builders<Set>.Filter.Eq("Id", id);
         var result = await _context.SetsCollection.DeleteOneAsync(filter);
     }
+
+    // public async Task DeleteWordInSet(string id)
+    // {
+    //     // int index = words.FindIndex(f => f.Id == id);
+    //     // var filter = Builders<Set>.Filter.Eq("Words", id);
+    //     var result = await _context.SetsCollection.DeleteOneAsync(f => f.Words[1].Id == id);
+    // }
 
 }

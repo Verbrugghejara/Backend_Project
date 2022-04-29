@@ -6,8 +6,8 @@ public interface ISpellItService
     Task<Set> AddSet(Set newSet);
     Task<Word> AddWord(Word newWord);
     Task DeleteFolder(string id);
+    Task DeleteSet(string id);
     Task DeleteWord(string id);
-    Task DeleteWordInSet(Word word);
     Task<List<Folder>> GetAllFolders();
     Task<List<Set>> GetAllSet();
     Task<List<Word>> GetAllWords();
@@ -15,7 +15,7 @@ public interface ISpellItService
     Task<Set> GetSetById(string id);
     Task<Word> GetWordById(string id);
     Task UpdateFolder(Folder folder);
-    Task UpdateSet(Set set);
+    Task<Set> UpdateSet(Set set);
     Task UpdateWord(Word word);
     Task UpdateWordInSet(Set set);
 }
@@ -82,9 +82,9 @@ public class SpellItService : ISpellItService
     {
         await _folderRepository.DeleteFolder(id);
     }
-    public async Task UpdateSet(Set set)
+    public async Task DeleteSet(string id)
     {
-        await _setRepository.UpdateSet(set);
+        await _setRepository.DeleteSet(id);
     }
     public async Task UpdateWordInSet(Set set)
     {
@@ -95,13 +95,18 @@ public class SpellItService : ISpellItService
     {
         await _wordRepository.UpdateWord(word);
     }
+    public async Task<Set> UpdateSet(Set set)
+    {
+        await _setRepository.UpdateSet(set);
+        return set;
+    }
 
     public async Task DeleteWord(string id)
     {
         await _wordRepository.DeleteWord(id);
     }
-    public async Task DeleteWordInSet(Word word)
-    {
-        await _setRepository.DeleteWordInSet(word);
-    }
+    // public async Task DeleteWordInSet(string id)
+    // {
+    //     await _setRepository.DeleteWordInSet(id);
+    // }
 }

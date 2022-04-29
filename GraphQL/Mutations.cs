@@ -55,15 +55,15 @@ public class Mutation
         };
         await spellItService.UpdateWord(updateWord);
     }
-    public async Task UpdateSet([Service] ISpellItService spellItService, AddSetInput input)
-    {
-        var updateSet = new Set()
-        {
-            Title = input.title,
-            Author = input.author
-        };
-        await spellItService.UpdateSet(updateSet);
-    }
+    // public async Task UpdateSet([Service] ISpellItService spellItService, AddSetInput input)
+    // {
+    //     var updateSet = new Set()
+    //     {
+    //         Title = input.title,
+    //         Author = input.author
+    //     };
+    //     await spellItService.UpdateSet(updateSet);
+    // }
     public async Task DeleteFolder([Service] ISpellItService spellItService, DeleteFolderInput input)
     {
         var deleteFolder = new Folder()
@@ -72,14 +72,14 @@ public class Mutation
         };
         await spellItService.DeleteFolder(deleteFolder.Id);
     }
-    public async Task DeleteWordInSet([Service] ISpellItService spellItService, DeleteSetInput input)
-    {
-        var deleteSet = new Word()
-        {
-            Id = input.id
-        };
-        await spellItService.DeleteWordInSet(deleteSet);
-    }
+    // public async Task DeleteWordInSet([Service] ISpellItService spellItService, DeleteSetInput input)
+    // {
+    //     var deleteSet = new Word()
+    //     {
+    //         Id = input.id
+    //     };
+    //     await spellItService.DeleteWordInSet(deleteSet);
+    // }
     public async Task DeleteWord([Service] ISpellItService spellItService, DeleteWordInput input)
     {
         var deleteWord = new Word()

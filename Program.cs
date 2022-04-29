@@ -72,56 +72,56 @@ app.MapPost("/authentication", (IAuthenticationService authenticationService, IO
 
 // app.MapGet("/swagger/index.html", () => "Hello World!");
 // FOLDER
-app.MapGet("/folder", async (ISpellItService SpellItService) => await SpellItService.GetAllFolders());
-app.MapGet("/folder/{folderid}", async (ISpellItService SpellItService, string folderid) => await SpellItService.GetFolderById(folderid));
-app.MapPost("/folder", async (ISpellItService SpellItService, Folder folder) =>
+app.MapGet("/folder", [Authorize] async (ISpellItService SpellItService) => await SpellItService.GetAllFolders());
+app.MapGet("/folder/{folderid}", [Authorize] async (ISpellItService SpellItService, string folderid) => await SpellItService.GetFolderById(folderid));
+app.MapPost("/folder", [Authorize] async (ISpellItService SpellItService, Folder folder) =>
 {
     var result = await SpellItService.AddFolder(folder);
     return Results.Created("/folder/"+folder.Id, result);
 });
-app.MapDelete("/folder/{id}", async (ISpellItService spellItService, string id) =>
+app.MapDelete("/folder/{id}",[Authorize] async (ISpellItService spellItService, string id) =>
 {
     await spellItService.DeleteFolder(id);
 });
-app.MapPut("/folder", async (ISpellItService spellItService, Folder folder) =>
+app.MapPut("/folder",[Authorize] async (ISpellItService spellItService, Folder folder) =>
 {
     await spellItService.UpdateFolder(folder);
 });
 
 // SET
 
-app.MapGet("/set", async (ISpellItService SpellItService) => await SpellItService.GetAllSet());
-app.MapGet("/set/{setid}", async (ISpellItService SpellItService, string setid) => await SpellItService.GetSetById(setid));
-app.MapPost("/set", async (ISpellItService SpellItService, Set set) =>
+app.MapGet("/set", [Authorize] async  (ISpellItService SpellItService) => await SpellItService.GetAllSet());
+app.MapGet("/set/{setid}",[Authorize] async (ISpellItService SpellItService, string setid) => await SpellItService.GetSetById(setid));
+app.MapPost("/set",[Authorize] async (ISpellItService SpellItService, Set set) =>
 {
     var result = await SpellItService.AddSet(set);
     return Results.Created("/set/"+set.Id, result);
 });
-app.MapPut("/set", async (ISpellItService spellItService, Set set) =>
+app.MapDelete("/set/{id}",[Authorize] async (ISpellItService spellItService, string id) =>
 {
-    await spellItService.UpdateSet(set);
+    await spellItService.DeleteSet(id);
 });
-app.MapPut("/set/word", async (ISpellItService spellItService, Set set) =>
+app.MapPut("/set/word",[Authorize] async (ISpellItService spellItService, Set set) =>
 {
     await spellItService.UpdateWordInSet(set);
 });
-app.MapDelete("/set/delWord", async (ISpellItService spellItService, [FromBody] Word word) =>
-{
-    await spellItService.DeleteWordInSet(word);
-});
+// app.MapDelete("/wordinset/{wordId}",[Authorize] async (ISpellItService spellItService, string wordId) =>
+// {
+//     await spellItService.DeleteWordInSet(wordId);
+// });
 
 // WORD 
-app.MapGet("/word", async (ISpellItService SpellItService) => await SpellItService.GetAllWords());
+// app.MapGet("/word",[Authorize] async (ISpellItService SpellItService) => await SpellItService.GetAllWords());
 
-app.MapGet("/word/{wordid}", async (ISpellItService SpellItService, string wordid) => await SpellItService.GetWordById(wordid));
-app.MapDelete("/word/{word}", async (ISpellItService spellItService, string id) =>
-{
-    await spellItService.DeleteWord(id);
-});
-app.MapPut("/word", async (ISpellItService spellItService, Word word) =>
-{
-    await spellItService.UpdateWord(word);
-});
+// app.MapGet("/word/{wordid}",[Authorize] async (ISpellItService SpellItService, string wordid) => await SpellItService.GetWordById(wordid));
+// app.MapDelete("/word/{word}",[Authorize] async (ISpellItService spellItService, string id) =>
+// {
+//     await spellItService.DeleteWord(id);
+// });
+// app.MapPut("/word",[Authorize] async (ISpellItService spellItService, Word word) =>
+// {
+//     await spellItService.UpdateWord(word);
+// });
 
 
 app.Run("http://0.0.0.0:3000");
