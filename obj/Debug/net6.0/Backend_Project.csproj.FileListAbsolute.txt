@@ -182,3 +182,7 @@ D:\_mct\MTS 4\Backend_Development\Backend_Project\bin\Debug\net6.0\Swashbuckle.A
 D:\_mct\MTS 4\Backend_Development\Backend_Project\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\_mct\MTS 4\Backend_Development\Backend_Project\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 D:\_mct\MTS 4\Backend_Development\Backend_Project\obj\Debug\net6.0\Backend_Project.MvcApplicationPartsAssemblyInfo.cs
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\appsettings.Docker.json
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\FluentValidation.dll
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+D:\2MCT\Backend\Backend_Project\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

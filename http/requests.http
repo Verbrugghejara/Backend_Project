@@ -19,14 +19,14 @@ PUT http://localhost:3000/set HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id":"6260014b6f7dc317124606a0",
+    "Id":"626bc7aa1309cb9f3877a4fb",
    "Title": "Werk",
       "Language": "",
       "Author": "",
       "Words": [
         {
-            "Id":"",
-          "value": "",
+            "Id":"EFCE47DA024719DEC62C4B62",
+          "value": "Put",
           "Correct": 0,
           "Mistake": 0
         }
@@ -39,7 +39,7 @@ PUT http://localhost:3000/set/word HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id":"6260014b6f7dc317124606a0",
+    "Id":"626bd356183d2a4dd38ee786",
    "Title": "werk",
       "Language": "",
       "Author": "",
@@ -58,7 +58,7 @@ Content-Type: application/json
 
 
 GET http://localhost:3000/set HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZ2l2ZW5fbmFtZSI6IlZlcmJydWdnaGUgSmFyYSIsImNpdHkiOiJUaWVsdCIsIm5iZiI6MTY1MDk5OTg0MiwiZXhwIjoxNjUyNzk5ODQyLCJpc3MiOiJodHRwczovLzAuMC4wLjA6MzAwMCIsImF1ZCI6InNwZWxsaXRfYXBpX3VzZXJzIn0.4AyUTcEQ4VI9wERgdQ4YUjWera5dY-ejSyW-Ipgw4o8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZ2l2ZW5fbmFtZSI6IlZlcmJydWdnaGUgSmFyYSIsImNpdHkiOiJUaWVsdCIsIm5iZiI6MTY1MTIzNDc1OSwiZXhwIjoxNjUzMDM0NzU5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDozMDAwIiwiYXVkIjoic3BlbGxpdF9hcGlfdXNlcnMifQ.5rKfGqYG4sRTFy_i2HQXLPD3pNKc1cfdcNOCUXluyFA
 
 ###
 
@@ -91,5 +91,24 @@ Content-Type: application/json
 
 ###!
 
-DELETE http://localhost:3000/word/7b38c2d7425784bc06131331 HTTP/1.1
+DELETE http://localhost:3000/wordinset/D5F42444C2CD2704B3AE1317 HTTP/1.1
 Content-Type: application/json
+
+# [
+#   {
+#       "id": null,
+#       "value": "Water",
+#       "correct": 2,
+#       "mistake": 0
+#   },
+#   {
+#       "id": "d5f42444c2cd2704b3ae1317",
+#       "value": "wooord",
+#       "correct": 0,
+#       "mistake": 0
+#   }
+# ]
+
+###
+
+DELETE http://localhost:3000/set/626bc7aa1309cb9f3877a4fb HTTP/1.1

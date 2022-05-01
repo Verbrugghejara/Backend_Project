@@ -35,7 +35,10 @@ public class SpellItService : ISpellItService
 
     public async Task<Folder> AddFolder(Folder newFolder)
     {
-        return await _folderRepository.AddFolder(newFolder);
+        if (newFolder == null)
+            throw new ArgumentException();
+        else
+            return await _folderRepository.AddFolder(newFolder);
     }
     public async Task<List<Folder>> GetAllFolders()
     {
