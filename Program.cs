@@ -74,9 +74,9 @@ app.MapPost("/authentication", (IAuthenticationService authenticationService, IO
 
 // app.MapGet("/swagger/index.html", () => "Hello World!");
 // FOLDER
-app.MapGet("/api/folder", [Authorize] async (ISpellItService spellItService) => await spellItService.GetAllFolders());
-app.MapGet("/api/folder/{folderid}", [Authorize] async (ISpellItService spellItService, string folderid) => await spellItService.GetFolderById(folderid));
-app.MapPost("/api/folder", [Authorize] async (ISpellItService spellItService,IValidator<Folder> validator, Folder folder) =>
+app.MapGet("/api/folder",  async (ISpellItService spellItService) => await spellItService.GetAllFolders());
+app.MapGet("/api/folder/{folderid}",  async (ISpellItService spellItService, string folderid) => await spellItService.GetFolderById(folderid));
+app.MapPost("/api/folder",  async (ISpellItService spellItService,IValidator<Folder> validator, Folder folder) =>
 {
     var validation = new FolderValidator();
     var result = validation.Validate(folder);
@@ -86,20 +86,20 @@ app.MapPost("/api/folder", [Authorize] async (ISpellItService spellItService,IVa
         await spellItService.AddFolder(folder);
         return Results.Created($"/api/folder/{folder.Id}", folder);
 });
-app.MapDelete("/api/folder/{id}",[Authorize] async (ISpellItService spellItService, string id) =>
+app.MapDelete("/api/folder/{id}", async (ISpellItService spellItService, string id) =>
 {
     await spellItService.DeleteFolder(id);
 });
-app.MapPut("/api/folder",[Authorize] async (ISpellItService spellItService, Folder folder) =>
+app.MapPut("/api/folder", async (ISpellItService spellItService, Folder folder) =>
 {
     await spellItService.UpdateFolder(folder);
 });
 
 // SET
 
-app.MapGet("/api/set", [Authorize] async  (ISpellItService spellItService) => await spellItService.GetAllSet());
-app.MapGet("/api/set/{setid}",[Authorize] async (ISpellItService spellItService, string setid) => await spellItService.GetSetById(setid));
-app.MapPost("/api/set",[Authorize] async (ISpellItService spellItService,IValidator<Set> validator, Set set) =>
+app.MapGet("/api/set",  async  (ISpellItService spellItService) => await spellItService.GetAllSet());
+app.MapGet("/api/set/{setid}", async (ISpellItService spellItService, string setid) => await spellItService.GetSetById(setid));
+app.MapPost("/api/set", async (ISpellItService spellItService,IValidator<Set> validator, Set set) =>
 {
     var validation = new SetValidator();
     var result = validation.Validate(set);
@@ -112,16 +112,20 @@ app.MapPost("/api/set",[Authorize] async (ISpellItService spellItService,IValida
     // var errors = result.Errors.Select(e => new {errors = e.ErrorMessage});
     // return Results.BadRequest(errors);
 });
-app.MapDelete("/api/set/{id}",[Authorize] async (ISpellItService spellItService, string id) =>
+app.MapDelete("/api/set/{id}", async (ISpellItService spellItService, string id) =>
 {
     await spellItService.DeleteSet(id);
 });
-app.MapPut("/api/set/word",[Authorize] async (ISpellItService spellItService, Set set) =>
+app.MapPut("/api/set/words", async (ISpellItService spellItService, Set set) =>
 {
-    await spellItService.UpdateWordInSet(set);
+    await spellItService.UpdateWordsInSet(set);
+});
+
+app.MapPut("api/set/word",async (ISpellItService spellItService, Set set)=>{
+    await spellItService.UpdateSet(set);
 });
 
 
-// app.Run("http://0.0.0.0:3000");
-app.Run();
+app.Run("http://0.0.0.0:3000");
+// app.Run();
 public partial class Program { }

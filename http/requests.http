@@ -1,4 +1,4 @@
-POST http://localhost:3000/set HTTP/1.1
+POST http://localhost:3000/api/set HTTP/1.1
 Content-Type: application/json
 
 {
@@ -7,9 +7,35 @@ Content-Type: application/json
     "Language":"Dutch (Belgium)",
     "Words":[
         {
+          
+          "Id":"B4D4C9B50185B46035DC7E78",
             "value":"Water",
             "Correct":2,
             "Mistake":0
+        },
+        {
+          "Id":"71A345FB7B0D339A0D5DD20E",
+            "value":"Cola",
+            "Correct":0,
+            "Mistake":2
+        },
+        {
+          "Id":"4E218994F38506C31DC30FF9",
+            "value":"Ice-tea",
+            "Correct":0,
+            "Mistake":1
+        },
+        {
+          "Id":"3E218994F38506C31DC30FF9",
+            "value":"Fante",
+            "Correct":0,
+            "Mistake":0
+        },
+        {
+          "Id":"4E218994F38506C31DC50FF9",
+            "value":"bier",
+            "Correct":0,
+            "Mistake":3
         }
     ]
 }
@@ -35,7 +61,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/set/word HTTP/1.1
+PUT http://localhost:3000/set/words HTTP/1.1
 Content-Type: application/json
 
 {
@@ -55,26 +81,186 @@ Content-Type: application/json
 
 
 ###
+PUT http://localhost:3000/api/set/word HTTP/1.1
+Content-Type: application/json
+
+{
+        "id": "627176c5587c7842aec286bb",
+        "title": "hello world",
+        "author": "Jara",
+        "language": "Dutch (Belgium)",
+        "words": [
+            {
+                "id": "b4d4c9b50185b46035dc7e78",
+                "value": "Water",
+                "correct": 2,
+                "mistake": 0
+            },
+            {
+                "id": "71a345fb7b0d339a0d5dd20e",
+                "value": "Cola",
+                "correct": 0,
+                "mistake": 2
+            },
+            {
+                "id": "4e218994f38506c31dc30ff9",
+                "value": "Ice-tea",
+                "correct": 0,
+                "mistake": 1
+            },
+            {
+                "id": "4e218994f38506c31dc50ff9",
+                "value": "bier",
+                "correct": 0,
+                "mistake": 3
+            },
+            {
+                "id": "3e218994f38506c31dc30ff9",
+                "value": "Fante",
+                "correct": 1,
+                "mistake": 0
+            }
+        ],
+        "countOfWords": 6
+    }
+
+###
+
+GET http://192.168.88.252:3000/api/set/627176c5587c7842aec286bb HTTP/1.1
 
 
-GET http://localhost:3000/set HTTP/1.1
+GET http://192.168.88.252:3000/api/set HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZ2l2ZW5fbmFtZSI6IlZlcmJydWdnaGUgSmFyYSIsImNpdHkiOiJUaWVsdCIsIm5iZiI6MTY1MTIzNDc1OSwiZXhwIjoxNjUzMDM0NzU5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDozMDAwIiwiYXVkIjoic3BlbGxpdF9hcGlfdXNlcnMifQ.5rKfGqYG4sRTFy_i2HQXLPD3pNKc1cfdcNOCUXluyFA
 
 ###
 
-GET http://localhost:3000/folder HTTP/1.1
+GET http://localhost:3000/api/folder HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZ2l2ZW5fbmFtZSI6IlZlcmJydWdnaGUgSmFyYSIsImNpdHkiOiJUaWVsdCIsIm5iZiI6MTY1MTAwNjIxMywiZXhwIjoxNjUyODA2MjEzLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDozMDAwIiwiYXVkIjoic3BlbGxpdF9hcGlfdXNlcnMifQ.R6cYvVJE6y5KMGDvewKc-ej0zbrhmh0VZASrcandXS4
 
 
 ###
 
-POST http://localhost:3000/folder HTTP/1.1
+POST http://localhost:3000/api/folder HTTP/1.1
 Content-Type: application/json
 
 {
     "Title":"folderenglsih",
     "Author":"rubiks",
-    "set":[]
+    "sets":[{
+        "id": "627176c5587c7842aec286bb",
+        "title": "hello world",
+        "author": "Jara",
+        "language": "Dutch (Belgium)",
+        "words": [
+            {
+                "id": "b4d4c9b50185b46035dc7e78",
+                "value": "Water",
+                "correct": 2,
+                "mistake": 0
+            },
+            {
+                "id": "71a345fb7b0d339a0d5dd20e",
+                "value": "Cola",
+                "correct": 0,
+                "mistake": 2
+            },
+            {
+                "id": "4e218994f38506c31dc30ff9",
+                "value": "Ice-tea",
+                "correct": 0,
+                "mistake": 1
+            },
+            {
+                "id": "4e218994f38506c31dc50ff9",
+                "value": "bier",
+                "correct": 0,
+                "mistake": 3
+            },
+            {
+                "id": "3e218994f38506c31dc30ff9",
+                "value": "Fante",
+                "correct": 1,
+                "mistake": 0
+            }
+        ],
+        "countOfWords": 6
+    },{
+        "id": "627176c5587c7842aec286bb",
+        "title": "hello world",
+        "author": "Jara",
+        "language": "Dutch (Belgium)",
+        "words": [
+            {
+                "id": "b4d4c9b50185b46035dc7e78",
+                "value": "Water",
+                "correct": 2,
+                "mistake": 0
+            },
+            {
+                "id": "71a345fb7b0d339a0d5dd20e",
+                "value": "Cola",
+                "correct": 0,
+                "mistake": 2
+            },
+            {
+                "id": "4e218994f38506c31dc30ff9",
+                "value": "Ice-tea",
+                "correct": 0,
+                "mistake": 1
+            },
+            {
+                "id": "4e218994f38506c31dc50ff9",
+                "value": "bier",
+                "correct": 0,
+                "mistake": 3
+            },
+            {
+                "id": "3e218994f38506c31dc30ff9",
+                "value": "Fante",
+                "correct": 1,
+                "mistake": 0
+            }
+        ],
+        "countOfWords": 6
+    },{
+        "id": "627176c5587c7842aec286bb",
+        "title": "hello world",
+        "author": "Jara",
+        "language": "Dutch (Belgium)",
+        "words": [
+            {
+                "id": "b4d4c9b50185b46035dc7e78",
+                "value": "Water",
+                "correct": 2,
+                "mistake": 0
+            },
+            {
+                "id": "71a345fb7b0d339a0d5dd20e",
+                "value": "Cola",
+                "correct": 0,
+                "mistake": 2
+            },
+            {
+                "id": "4e218994f38506c31dc30ff9",
+                "value": "Ice-tea",
+                "correct": 0,
+                "mistake": 1
+            },
+            {
+                "id": "4e218994f38506c31dc50ff9",
+                "value": "bier",
+                "correct": 0,
+                "mistake": 3
+            },
+            {
+                "id": "3e218994f38506c31dc30ff9",
+                "value": "Fante",
+                "correct": 1,
+                "mistake": 0
+            }
+        ],
+        "countOfWords": 6
+    }]
     
     
 }
@@ -92,6 +278,12 @@ Content-Type: application/json
 ###!
 
 DELETE http://localhost:3000/wordinset/D5F42444C2CD2704B3AE1317 HTTP/1.1
+Content-Type: application/json
+
+
+###
+
+DELETE http://localhost:3000/api/set/627174812c3937f0d63a61f8 HTTP/1.1
 Content-Type: application/json
 
 # [

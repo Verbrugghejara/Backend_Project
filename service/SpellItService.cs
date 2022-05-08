@@ -18,6 +18,7 @@ public interface ISpellItService
     Task<Set> UpdateSet(Set set);
     Task UpdateWord(Word word);
     Task UpdateWordInSet(Set set);
+    Task UpdateWordsInSet(Set set);
 }
 
 public class SpellItService : ISpellItService
@@ -88,6 +89,10 @@ public class SpellItService : ISpellItService
     public async Task DeleteSet(string id)
     {
         await _setRepository.DeleteSet(id);
+    }
+    public async Task UpdateWordsInSet(Set set)
+    {
+        await _setRepository.UpdateWordsInSet(set);
     }
     public async Task UpdateWordInSet(Set set)
     {

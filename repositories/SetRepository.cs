@@ -8,10 +8,12 @@ public interface ISetRepository
     Task<Set> GetSetById(string Id);
     Task<Set> UpdateSet(Set set);
     Task<Set> UpdateWordInSet(Set set);
+    Task<Set> UpdateWordsInSet(Set set);
 }
 
 public class SetRepository : ISetRepository
 {
+    private static List<Set> _sets = new List<Set>();
     private readonly IMongoContext _context;
     public SetRepository(IMongoContext context)
     {
@@ -32,10 +34,17 @@ public class SetRepository : ISetRepository
     {
         return await _context.SetsCollection.Find<Set>(c => c.Id == Id).FirstOrDefaultAsync();
     }
-    public async Task<Set> UpdateWordInSet(Set set)
+    public async Task<Set> UpdateWordsInSet(Set set)
     {
         var filter = Builders<Set>.Filter.Eq("Id", set.Id);
         var update = Builders<Set>.Update.AddToSet("Words", set.Words[0]);
+        var result = await _context.SetsCollection.UpdateOneAsync(filter, update);
+        return await GetSetById(set.Id);
+    }
+    public async Task<Set> UpdateWordInSet(Set set)
+    {
+        var filter = Builders<Set>.Filter.Eq("Id", set.Id);
+        var update = Builders<Set>.Update.Set("Words", set.Words);
         var result = await _context.SetsCollection.UpdateOneAsync(filter, update);
         return await GetSetById(set.Id);
     }
